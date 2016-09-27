@@ -13,10 +13,10 @@ public class NsLookup {
 		try {
 			while(true){
 			String host = scanner.nextLine();
-			InetAddress[] inetAddresses = InetAddress.getAllByName(host);
-			if("exit".equals(host)){	// 비교후 맞으면 true 아니면 false
+			if(host.equals("exit")){	// 비교후 맞으면 true 아니면 false
 				break;
 			}
+			InetAddress[] inetAddresses = InetAddress.getAllByName(host);
 			for(InetAddress inetAddress : inetAddresses){
 				System.out.println(inetAddress.getHostAddress());
 			}
@@ -24,7 +24,9 @@ public class NsLookup {
 		}
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
+		}finally{
+			scanner.close();
+			System.out.println("종료");
 		}
-		scanner.close();
 	}
 	}
