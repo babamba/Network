@@ -34,18 +34,18 @@ public class EchoServer {
 				Socket socket = serverSocket.accept();	//클라이언트 연결수락
 				
 				InetSocketAddress inetSocketAddress = 
-						(InetSocketAddress) socket.getRemoteSocketAddress(); //연결된 시스템에 대한 주소를 반환한다.
+						(InetSocketAddress) socket.getRemoteSocketAddress(); //연결된 시스템에 대한 주소(IP+PORT)를 반환한다.
 				
-				InetAddress inetRemoteAddress = inetSocketAddress.getAddress();
+				InetAddress inetRemoteAddress = inetSocketAddress.getAddress(); //	socket 어드레스
+				String remoteHostAddress = inetRemoteAddress.getHostAddress();	//	host   어드레스
 				
-				String remoteHostAddress = inetRemoteAddress.getHostAddress();
 				int remoteHostPort = inetSocketAddress.getPort();
 				System.out.println("[서버] 연결됨 " + "클라이언트 from ["+ remoteHostAddress + ":" + remoteHostPort + "]");
 			
 				try{
 //				InputStream inputStream = socket.getInputStream();
 //				OutputStream outputStream = socket.getOutputStream();
-			
+			//IO스트림
 				BufferedReader bufread = 
 						new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
 				PrintWriter printwrite =
@@ -56,7 +56,7 @@ public class EchoServer {
 				while(true){
 //					데이터읽기
 //					String data = scan.nextLine();
-					String data = bufread.readLine();
+					String data = bufread.readLine();  //블락
 					if(data == null){
 						System.out.println("[서버] 클라이언트 연결종료");
 						break;
@@ -68,27 +68,27 @@ public class EchoServer {
 				}
 
 				}catch(SocketException ex){
-					System.out.println("[서버] 클라이언트 비정상종료");
+					System.out.println("[서버] 클라이언트 접속종료");
 				}finally{
 					try{
-						//5.자원정리
+						//5.자원정리(소켓닫기)
 						socket.close();
+					
 					}catch(IOException ex){
 						ex.printStackTrace();
 					}
 				}
-
 			} catch (IOException e) {
 				e.printStackTrace();
 			}finally{
-				try{
 				if(serverSocket != null && serverSocket.isClosed() == false){
-						serverSocket.close();
-						System.out.println("[서버] 서버가 종료됨");
-				}
-					} catch (IOException e) {
-						e.printStackTrace();
+				
+					try{serverSocket.close();
+					System.out.println("[서버] 서버가 종료됨");
+				} catch (IOException e) {
+					e.printStackTrace();
 					}
 				}
 			}
 		}
+	}
