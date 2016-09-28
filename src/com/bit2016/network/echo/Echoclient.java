@@ -22,7 +22,7 @@ public class Echoclient { //
 
 	public static void main(String[] args) {
 		Socket socket = null;
-
+		Scanner scan = null;
 		// 소켓생성
 
 		try {
@@ -38,7 +38,7 @@ public class Echoclient { //
 			// 4.쓰기
 
 			while (true) {
-
+				//입력받기
 				Scanner scanner = new Scanner(System.in);
 				System.out.print(">>");
 				String inputData = scanner.nextLine();
@@ -46,9 +46,11 @@ public class Echoclient { //
 				if (inputData.equals("exit")) {
 					break;
 				}
-				pw.println(inputData);
-
-				String data = br.readLine();
+				//송신
+				pw.println(inputData); 
+				
+				//수신
+				String data = br.readLine(); 
 				if (data == null) {	
 					break;
 				}
@@ -56,7 +58,7 @@ public class Echoclient { //
 				
 			}
 		} catch (SocketException ex) { 
-			System.out.println("예외하지 않은 종료"); 
+			System.out.println("예외하지 않은 종료");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {

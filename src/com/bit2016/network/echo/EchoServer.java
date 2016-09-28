@@ -30,9 +30,10 @@ public class EchoServer {
 
 			// 2. 바인딩 (소켓끼리 소켓주소(IP + HOST) 바인딩)
 			serverSocket.bind(new InetSocketAddress(hostAddress, PORT));
+			System.out.println("[서버] 연결대기중");
 
 			// 3.accept(클라이언트 연결요청까지 대기)
-			System.out.println("[서버] 연결대기중");
+			
 			Socket socket = serverSocket.accept(); // 클라이언트 연결수락
 
 			InetSocketAddress inetSocketAddress = (InetSocketAddress) socket.getRemoteSocketAddress(); // 연결된시스템에 대한 주소(IP+PORT)를 반환한다.
