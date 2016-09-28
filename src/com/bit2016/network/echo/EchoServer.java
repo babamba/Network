@@ -35,17 +35,11 @@ public class EchoServer {
 			System.out.println("[서버] 연결대기중");
 			Socket socket = serverSocket.accept(); // 클라이언트 연결수락
 
-			InetSocketAddress inetSocketAddress = (InetSocketAddress) socket.getRemoteSocketAddress(); // 연결된
-																										// 시스템에
-																										// 대한
-																										// 주소(IP+PORT)를
-																										// 반환한다.
-
-			InetAddress inetRemoteAddress = inetSocketAddress.getAddress(); // socket
-																			// 어드레스
-			String remoteHostAddress = inetRemoteAddress.getHostAddress(); // host
-																			// 어드레스
-
+			InetSocketAddress inetSocketAddress = (InetSocketAddress) socket.getRemoteSocketAddress(); // 연결된시스템에 대한 주소(IP+PORT)를 반환한다.
+			InetAddress inetRemoteAddress = inetSocketAddress.getAddress(); // socket어드레스																	
+		
+			String remoteHostAddress = inetRemoteAddress.getHostAddress(); // host어드레스
+																			 
 			int remoteHostPort = inetSocketAddress.getPort();
 			System.out.println("[서버] 연결됨 " + "클라이언트 from [" + remoteHostAddress + ":" + remoteHostPort + "]");
 
