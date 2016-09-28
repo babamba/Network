@@ -16,8 +16,8 @@ import java.util.Scanner;
 
 import org.omg.Messaging.SyncScopeHelper;
 
-public class Echoclient { // "192.168.1.13";
-	private static final String SERVER_IP = "192.168.0.1";
+public class Echoclient { // 
+	private static final String SERVER_IP = "192.168.1.13";
 	private static final int SERVER_PORT = 5004;
 
 	public static void main(String[] args) {

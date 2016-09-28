@@ -63,12 +63,12 @@ public class EchoServer {
 					String data = bufread.readLine(); // 블락
 
 					// 쓰기
-					if (data != null) {
-						System.out.println("[서버] 데이터 수신 " + data);
-						printwrite.println(data);
+					if (data == null) {
+						System.out.println("[서버] 클라이언트 연결종료");
+						break;
 					}
-					System.out.println("[서버] 클라이언트 연결종료");
-					break;
+					System.out.println("[서버] 데이터 수신 " + data);
+					printwrite.println(data);
 
 				}
 
